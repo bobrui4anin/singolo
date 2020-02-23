@@ -1,0 +1,316 @@
+@font-face {
+    font-family: 'Lato';
+    src: url('assets/fonts/lato/Lato-Light.eot');
+    src: url('assets/fonts/lato/Lato-Light.eot?#iefix') format('embedded-opentype'),
+         url('assets/fonts/lato/Lato-Light.woff') format('woff'),
+         url('assets/fonts/lato/Lato-Light.ttf') format('truetype');
+    font-style: normal;
+    font-weight: 300;
+}
+@font-face {
+    font-family: 'Lato';
+    src: url('assets/fonts/lato/Lato-Regular.eot');
+    src: url('assets/fonts/lato/Lato-Regular.eot?#iefix') format('embedded-opentype'),
+        url('assets/fonts/lato/Lato-Regular.woff') format('woff'),
+        url('assets/fonts/lato/Lato-Regular.ttf') format('truetype');
+    font-style: normal;
+    font-weight: 400;
+}
+@font-face {
+    font-family: 'Lato';
+    src: url('assets/fonts/lato/Lato-Bold.eot');
+    src: url('assets/fonts/lato/Lato-Bold.eot?#iefix') format('embedded-opentype'),
+        url('assets/fonts/lato/Lato-Bold.woff') format('woff'),
+        url('assets/fonts/lato/Lato-Bold.ttf') format('truetype');
+    font-style: normal;
+    font-weight: 700;
+}
+@font-face {
+    font-family: 'Lato';
+    src: url('assets/fonts/lato/Lato-Black.eot');
+    src: url('assets/fonts/lato/Lato-Black.eot?#iefix') format('embedded-opentype'),
+        url('assets/fonts/lato/Lato-Black.woff') format('woff'),
+        url('assets/fonts/lato/Lato-Black.ttf') format('truetype');
+    font-style: normal;
+    font-weight: 900;
+}
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+a {
+    text-decoration: none;
+}
+
+html {
+    font-size: 10px;
+}
+
+body {
+    font-family: "Lato", Verdana, sans-serif;
+    font-size: 1.6rem;
+}
+
+.container {
+    max-width: 1020px;
+    margin: 0 auto;
+    padding: 0 40px;
+}
+
+.header {
+    height: 95px;
+    background: #2d303a;
+    border-bottom: 6px solid #323746;
+    color: #fff;
+    font-weight: 700;
+}
+
+.header-wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.header-title {
+    margin: 25px 0 0;
+}
+
+.logo {
+    color: #fff;
+    text-transform: uppercase;
+    font-size: 2.6rem;
+    letter-spacing: -1.28px;
+}
+
+.star_red {
+    color: #f06c64;
+}
+
+.navigation__links {
+    display: flex;
+    margin-top: 40px;
+    width: 371px;
+    list-style: none;
+    justify-content: space-between;
+    letter-spacing: 0.09px;
+}
+
+.navigation__link {
+    margin-right: 28px;
+    position: relative;
+}
+
+.navigation__link:last-child {
+    margin-right: 0;
+}
+
+.navigation__link:not(:last-child)::after {
+    content: '·';
+    font-size: 1rem;
+    opacity: 0.2;
+    position: absolute;
+    bottom: 2px;
+    right: -15px;
+}
+
+.navigation__link a {
+    color: #fff;
+    text-transform: uppercase;
+    font-size: 1.2rem;
+    transition: all .3s ease-in-out;
+}
+
+.navigation__link a:hover {
+    cursor: pointer;
+    color: #f06c64;
+}
+
+.navigation__link a.active {
+    color: #f06c64;
+}
+
+.slider {
+    background: #f06c64;
+    border-bottom: 6px solid #ea676b;
+}
+
+.slider__wrapper {
+    position: relative;
+}
+
+.slider__item_centered {
+    display: flex;
+    height: 594px;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.item-img-vertical {
+    margin-left: 36px;
+}
+
+.item-img-horizontal {
+    margin-right: 34px;
+    margin-bottom: 1px;
+}
+
+.slider__control {
+    width: 16px;
+    height: 27px;
+    background: url(./assets/images/slider/arrow.png);
+    transition: .3s ease;
+}
+
+.slider__control:hover {
+    opacity: .5;
+}
+
+.slider__control_prev {
+    position: absolute;
+    top: calc(50% - 16.5px);
+    left: 2px;
+}
+
+.slider__control_next {
+    position: absolute;
+    top: calc(50% - 16.5px);
+    right: 0;
+    transform: rotate(180deg);
+}
+
+.services {
+    height: 500px;
+    background: #f2f2f2;
+    border-bottom: 6px solid #fff;
+}
+
+.services-heading {
+    padding-top: 62px;
+    letter-spacing: 0.1px;
+    font-weight: 900;
+    color: #666d89;
+}
+
+.services-heading h2 {
+    font-size: 3rem;
+    font-weight: 900;
+}
+
+.services-description {
+    font-weight: 300;
+    color: #767e9e;
+    font-size: 1.8rem;
+    margin-top: 17px;
+    margin: 17px 0 9px 0;
+    line-height: 30px;
+    letter-spacing: -0.2px;
+    text-align: justify;
+}
+
+.layout-3-column {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.service {
+    display: flex;
+    flex-direction: row;
+    width: 32%;
+    margin-top: 33px;
+}
+
+.service__img {
+    width: 59px;
+    min-width: 59px;
+    height: 59px;
+    border-radius: 50%;
+    border: 2px solid #666d89;
+}
+
+.svg_pen {
+    background: url(./assets/images/services/pen.svg);
+    background-repeat: no-repeat;
+    background-position: center center;
+    margin: 3px 0 0 1px;
+}
+
+.svg_bulb {
+    background: url(./assets/images/services/bulb.svg);
+    background-repeat: no-repeat;
+    background-position: center 11px;
+    margin: 3px 0 0 1px;
+}
+
+.svg_heart {
+    background: url(./assets/images/services/heart.svg);
+    background-repeat: no-repeat;
+    background-position: center center;
+    margin: 3px 0 0 1px;
+}
+
+.svg_phone {
+    background: url(./assets/images/services/phone.svg);
+    background-repeat: no-repeat;
+    background-position: center center;
+    margin: 3px 0 0 1px;
+}
+
+.svg_bubble {
+    background: url(./assets/images/services/bubble.svg);
+    background-repeat: no-repeat;
+    background-position: center center;
+    margin: 3px 0 0 1px;
+}
+
+.svg_star {
+    background: url(./assets/images/services/star.svg);
+    background-repeat: no-repeat;
+    background-position: center center;
+    margin: 3px 0 0 1px;
+}
+
+.service__content {
+    width: 220px;
+    height: 90px;
+    overflow: hidden;
+    margin-left: 20px;
+}
+
+.service__content .service__title {
+    font-weight: 900;
+    font-size: 1.8rem;
+    color: #666d89;
+}
+
+.service:nth-child(3) .service__title {
+    padding-left: 2px;
+    letter-spacing: -0.09px;
+}
+
+.service:nth-child(5) .service__title {
+    letter-spacing: -0.14px;
+    word-spacing: -1px;
+}
+
+.service:nth-child(6) .service__title {
+    padding-left: 2px;
+}
+
+.service__content .service__text {
+    font-weight: 400;
+    font-size: 1.2rem;
+    text-align: justify;
+    color: #767e9e;
+    margin-top: 8px;
+    line-height: 21.56px;
+    letter-spacing: -0.1px;
+}
+
+    
