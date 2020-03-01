@@ -197,30 +197,68 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 100%;
-    height: 100%;
+    width: 0;
+    height: 0;
     position: fixed;
     background: rgba(0, 0, 0, .5);
     z-index: 1;
     top: 0;
     left: 0;
+    transition: all .3s;
+}
+
+.magnify-wrapper {
+    position: relative;
+    z-index: 2;
 }
 
 .image_full {
-    /* width: 100%; */
-    position: relative;
+    width: 100%;
 }
 
-.image_full::before {
-    content: '&times;';
-    width: 20px;
-    height: 20px;
+.close {
+    width: 40px;
+    height: 40px;
     display: block;
     position: absolute;
-    right: 100px;
-    top: 100px;
+    right: 0;
+    top: 0;
     background: red;
     z-index: 2;
+    transition: all .3s ease-in;
 }
+
+.close::before {
+    position: absolute;
+    content: '';
+    width: 100%;
+    height: 2px;
+    background: #fff;
+    transform: rotate(45deg);
+    top: 17px;
+    transition: all .3s ease-in;
+}
+
+.close::after {
+    position: absolute;
+    content: '';
+    width: 100%;
+    height: 2px;
+    background: #fff;
+    transform: rotate(135deg);
+    top: 17px;
+    transition: all .3s ease-in;
+}
+
+.close:hover {
+    background: #fff;
+    cursor: pointer;
+}
+
+.close:hover::after,
+.close:hover::before {
+    background: red;
+}
+
 
 	
