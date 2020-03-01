@@ -186,21 +186,42 @@
 
         window.onload = function() {
             let portfolioCategory = document.querySelector('.portfolio__img-category'),
-                portfolioCategoryBtns = document.querySelectorAll('.img-category');
+                portfolioCategoryBtns = document.querySelectorAll('.img-category'),
+                portfolioImagesBlock = document.querySelector('.img__all .layout-4-column');
 
-            portfolioCategory.addEventListener('click', (e) => {
-                if(e.target.className == 'img-category' && e.target.tagName == 'SPAN') {
-                    for(let i = 0; i < portfolioCategoryBtns.length; i++) {
-                        portfolioCategoryBtns[i].classList.remove('category_active');
-                    }
-                    for(let i = 0; i < portfolioCategoryBtns.length; i++) {
-                        if(e.target == portfolioCategoryBtns[i]) {
-                            portfolioCategoryBtns[i].classList.add('category_active');
-                            // console.log(e.target.innerText);
+            const QUANTITY_IMAGES = 12;
+
+            function switchImageCategory() {
+                portfolioCategory.addEventListener('click', (e) => {
+                    if(e.target.className == 'img-category' && e.target.tagName == 'SPAN') {
+                        for(let i = 0; i < portfolioCategoryBtns.length; i++) {
+                            portfolioCategoryBtns[i].classList.remove('category_active');
                         }
+
+                        portfolioImagesBlock.innerHTML = '';
+
+                        for(let i = 0; i < portfolioCategoryBtns.length; i++) {
+                            if(e.target == portfolioCategoryBtns[i]) {
+                                portfolioCategoryBtns[i].classList.add('category_active');
+                                const PATH = `./assets/images/portfolio/${portfolioCategoryBtns[i].getAttribute('data-index')}`;
+
+                                for(let j = 0; j < QUANTITY_IMAGES; j++) {
+                                    let newImage = new Image()
+                                    newImage.src = `${PATH}/p${j + 1}.jpg`;
+                                    newImage.setAttribute('class', 'portfolio__image');
+                                    newImage.setAttribute('alt', 'Portfolio images');
+                                    portfolioImagesBlock.appendChild(newImage);
+                                }
+
+                                break;
+                            }
+                        }
+
                     }
-                }
-            });
+                });
+            }
+            
+            switchImageCategory();
         }
     </script>
 </body>
