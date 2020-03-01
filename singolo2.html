@@ -192,7 +192,7 @@
             const QUANTITY_IMAGES = 12;
 
             function switchImageCategory() {
-                portfolioCategory.addEventListener('click', (e) => {
+                portfolioCategory.addEventListener('click', function (e) {
                     if(e.target.className == 'img-category' && e.target.tagName == 'SPAN') {
                         for(let i = 0; i < portfolioCategoryBtns.length; i++) {
                             portfolioCategoryBtns[i].classList.remove('category_active');
@@ -206,22 +206,60 @@
                                 const PATH = `./assets/images/portfolio/${portfolioCategoryBtns[i].getAttribute('data-index')}`;
 
                                 for(let j = 0; j < QUANTITY_IMAGES; j++) {
-                                    let newImage = new Image()
+                                    let newImage = new Image();
                                     newImage.src = `${PATH}/p${j + 1}.jpg`;
                                     newImage.setAttribute('class', 'portfolio__image');
                                     newImage.setAttribute('alt', 'Portfolio images');
                                     portfolioImagesBlock.appendChild(newImage);
                                 }
-
                                 break;
                             }
                         }
-
                     }
                 });
             }
+
+            function magnifyImage() {
+
+                portfolioImagesBlock.addEventListener('click', (e) => {
+                    let IMAGES = document.querySelectorAll('.portfolio__image');
+                    console.log(IMAGES);
+                    console.log(e);
+                    if(e.target.className == 'portfolio__image' && e.target.tagName == 'IMG') {
+                        let overlay = document.createElement('div');
+                        overlay.classList.add('overlay');
+                        document.body.appendChild(overlay);
+
+                        let fullSizeImage = new Image();
+                        fullSizeImage.setAttribute('class', 'image_full');
+                        fullSizeImage.setAttribute('alt', 'Portfolio image');
+                        
+                        for(let i = 0; i < IMAGES.length; i++) {
+                            if(e.target == IMAGES[i]) {
+                                console.log(IMAGES[i].src);
+                                let pathToImage = IMAGES[i].src;
+                                fullSizeImage.setAttribute('src', pathToImage);
+                            }
+                        }
+                        overlay.appendChild(fullSizeImage);
+                        closeMagnifyImage(overlay);
+                    }
+                });
+
+            }
+
+            function closeMagnifyImage(overlay) {
+                console.log(overlay);
+                if(overlay) {
+                    overlay.addEventListener('click', function(e) {
+                        console.log(e.target);
+                        overlay.remove();
+                    });
+                }
+            }
             
             switchImageCategory();
+            magnifyImage();
         }
     </script>
 </body>
