@@ -69,15 +69,126 @@
     justify-content: space-between;
 }
 
-.image {
+.portfolio__image {
     margin-bottom: 20px;
     width: 220px;
     height: 187px;
-    overflow: hidden;
     transition: all .3s ease-in-out;
 }
 
-.image:hover {
+.portfolio__image:hover {
     transform: scale(1.1);
     cursor: pointer;
+}
+
+.about-us {
+    background: #f2f2f2;
+    padding: 62px 0;
+    border-bottom: 6px solid #fff;
+}
+
+.about-heading h2 {
+    color: #666d89;
+    font-weight: 900;
+    font-size: 3rem;
+    letter-spacing: -0.16px;
+    margin-left: 1px;
+}
+
+.about__text {
+    font-size: 1.8rem;
+    font-weight: 300;
+    margin: 17px 0 43px;
+    color: #767e9e;
+    letter-spacing: -0.21px;
+    text-align: justify;
+    line-height: 30px;
+}
+
+.employee {
+    display: flex;
+    flex-direction: column;
+    width: calc(33% - 10px);
+}
+
+.employee:nth-child(2) {
+    margin-left: -1px;
+}
+
+.employee:nth-child(3) {
+    margin-right: -0.5px;
+}
+
+.employee__photo {
+    width: 100%;
+}
+
+.employee__name {
+    font-size: 1.8rem;
+    color: #666d89;
+    font-weight: 900;
+    letter-spacing: -0.12px;
+    margin: 17px 0 0 -1px;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.employee:first-child .employee__name {
+    margin-left: -0.4px;
+    letter-spacing: 0;
+}
+
+.employee:last-child .employee__name {
+    letter-spacing: 0.15px;
+}
+
+.employee__text {
+    color: #767e9e;
+    font-weight: 400;
+    text-align: justify;
+    font-size: 1.2rem;
+    line-height: 21.56px;
+    margin-top: 7px;
+}
+
+.employee:first-child .employee__text {
+    letter-spacing: -0.14px;
+}
+
+.employee:last-child .employee__text {
+    letter-spacing: -0.1px;
+}
+
+.social-links {
+    margin-top: 23px;
+}
+
+.social__link {
+    margin-right: 4px;
+}
+
+.employee:first-child .social__link,
+.employee:nth-child(2) .social__link {
+    margin: 0 3px 0 1px;
+}
+
+.social-links svg {
+    fill: #666d89;
+    transition: all .3s ease-in-out;
+}
+
+.facebook__link svg:hover {
+    fill: #157dc3;
+}
+
+.google-plus__link svg:hover {
+    fill: red;
+}
+
+.twitter__link svg:hover {
+    fill: #3fa6db;
+}
+
+.linkedin__link svg:hover {
+    fill: black;
 }
