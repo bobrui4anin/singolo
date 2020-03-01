@@ -180,5 +180,28 @@
             </div>
         </section>
     </main>
+
+    <script>
+        // В задании не было ничего сказано про скрипты, но все же. Я не стал выносить в отдельный файл
+
+        window.onload = function() {
+            let portfolioCategory = document.querySelector('.portfolio__img-category'),
+                portfolioCategoryBtns = document.querySelectorAll('.img-category');
+
+            portfolioCategory.addEventListener('click', (e) => {
+                if(e.target.className == 'img-category' && e.target.tagName == 'SPAN') {
+                    for(let i = 0; i < portfolioCategoryBtns.length; i++) {
+                        portfolioCategoryBtns[i].classList.remove('category_active');
+                    }
+                    for(let i = 0; i < portfolioCategoryBtns.length; i++) {
+                        if(e.target == portfolioCategoryBtns[i]) {
+                            portfolioCategoryBtns[i].classList.add('category_active');
+                            // console.log(e.target.innerText);
+                        }
+                    }
+                }
+            });
+        }
+    </script>
 </body>
 </html>
