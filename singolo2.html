@@ -223,8 +223,7 @@
 
                 portfolioImagesBlock.addEventListener('click', (e) => {
                     let IMAGES = document.querySelectorAll('.portfolio__image');
-                    console.log(IMAGES);
-                    console.log(e);
+                    
                     if(e.target.className == 'portfolio__image' && e.target.tagName == 'IMG') {
                         let overlay = document.createElement('div');
                         overlay.classList.add('overlay');
@@ -236,12 +235,24 @@
                         
                         for(let i = 0; i < IMAGES.length; i++) {
                             if(e.target == IMAGES[i]) {
-                                console.log(IMAGES[i].src);
                                 let pathToImage = IMAGES[i].src;
                                 fullSizeImage.setAttribute('src', pathToImage);
                             }
                         }
-                        overlay.appendChild(fullSizeImage);
+
+                        let close = document.createElement('i');
+                        close.classList.add('close');
+
+                        let wrapper = document.createElement('div');
+                        wrapper.classList.add('magnify-wrapper');
+                        wrapper.appendChild(fullSizeImage);
+                        wrapper.appendChild(close);
+                        overlay.appendChild(wrapper);
+
+                        setTimeout(() => {
+                            overlay.style.width = '100%';
+                            overlay.style.height = '100%';
+                        }, 100);
                         closeMagnifyImage(overlay);
                     }
                 });
@@ -249,11 +260,17 @@
             }
 
             function closeMagnifyImage(overlay) {
-                console.log(overlay);
                 if(overlay) {
                     overlay.addEventListener('click', function(e) {
-                        console.log(e.target);
-                        overlay.remove();
+                        if((e.target.className == 'close' && e.target.tagName == 'I') || (e.target.className == 'overlay' && e.target.tagName == 'DIV')) {
+                            setTimeout(() => {
+                                overlay.style.height = '0%';
+                            }, 100);
+                            setTimeout(() => {
+                                overlay.remove();
+                                overlay.style.width = '0%';
+                            }, 300);
+                        }
                     });
                 }
             }
