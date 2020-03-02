@@ -18,26 +18,26 @@
                     Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.
                 </p>
                 <div class="portfolio__img-category">
-                    <span class="img-category category_active" data-index="all">All</span>
-                    <span class="img-category" data-index="artwork">Web Design</span>
-                    <span class="img-category" data-index="graphic-design">Graphic Design</span>
-                    <span class="img-category" data-index="web-design">Artwork</span>
+                    <span class="img-category category_active" data-index="all" data-tooltip='click me'>All</span>
+                    <span class="img-category" data-index="artwork" data-tooltip='click me'>Web Design</span>
+                    <span class="img-category" data-index="graphic-design" data-tooltip='click me'>Graphic Design</span>
+                    <span class="img-category" data-index="web-design" data-tooltip='click me'>Artwork</span>
                 </div>
                 <div class="portfolio__img">
                     <div class="img__all">
                         <div class="layout-4-column">
-                            <img src="./assets/images/portfolio/all/p1.jpg" alt="Portfolio images" class="portfolio__image">
-                            <img src="./assets/images/portfolio/all/p2.jpg" alt="Portfolio images" class="portfolio__image">
-                            <img src="./assets/images/portfolio/all/p3.jpg" alt="Portfolio images" class="portfolio__image">
-                            <img src="./assets/images/portfolio/all/p4.jpg" alt="Portfolio images" class="portfolio__image">
-                            <img src="./assets/images/portfolio/all/p5.jpg" alt="Portfolio images" class="portfolio__image">
-                            <img src="./assets/images/portfolio/all/p6.jpg" alt="Portfolio images" class="portfolio__image">
-                            <img src="./assets/images/portfolio/all/p7.jpg" alt="Portfolio images" class="portfolio__image">
-                            <img src="./assets/images/portfolio/all/p8.jpg" alt="Portfolio images" class="portfolio__image">
-                            <img src="./assets/images/portfolio/all/p9.jpg" alt="Portfolio images" class="portfolio__image">
-                            <img src="./assets/images/portfolio/all/p10.jpg" alt="Portfolio images" class="portfolio__image">
-                            <img src="./assets/images/portfolio/all/p11.jpg" alt="Portfolio images" class="portfolio__image">
-                            <img src="./assets/images/portfolio/all/p12.jpg" alt="Portfolio images" class="portfolio__image">
+                            <img src="./assets/images/portfolio/all/p1.jpg" alt="Portfolio images" class="portfolio__image" data-tooltip='click me'>
+                            <img src="./assets/images/portfolio/all/p2.jpg" alt="Portfolio images" class="portfolio__image" data-tooltip='click me'>
+                            <img src="./assets/images/portfolio/all/p3.jpg" alt="Portfolio images" class="portfolio__image" data-tooltip='click me'>
+                            <img src="./assets/images/portfolio/all/p4.jpg" alt="Portfolio images" class="portfolio__image" data-tooltip='click me'>
+                            <img src="./assets/images/portfolio/all/p5.jpg" alt="Portfolio images" class="portfolio__image" data-tooltip='click me'>
+                            <img src="./assets/images/portfolio/all/p6.jpg" alt="Portfolio images" class="portfolio__image" data-tooltip='click me'>
+                            <img src="./assets/images/portfolio/all/p7.jpg" alt="Portfolio images" class="portfolio__image" data-tooltip='click me'>
+                            <img src="./assets/images/portfolio/all/p8.jpg" alt="Portfolio images" class="portfolio__image" data-tooltip='click me'>
+                            <img src="./assets/images/portfolio/all/p9.jpg" alt="Portfolio images" class="portfolio__image" data-tooltip='click me'>
+                            <img src="./assets/images/portfolio/all/p10.jpg" alt="Portfolio images" class="portfolio__image" data-tooltip='click me'>
+                            <img src="./assets/images/portfolio/all/p11.jpg" alt="Portfolio images" class="portfolio__image" data-tooltip='click me'>
+                            <img src="./assets/images/portfolio/all/p12.jpg" alt="Portfolio images" class="portfolio__image" data-tooltip='click me'>
                         </div>
                     </div>
                 </div>
@@ -198,6 +198,8 @@
                             portfolioCategoryBtns[i].classList.remove('category_active');
                         }
 
+                        let removeTooltip = document.querySelector('.tooltip').remove();
+
                         portfolioImagesBlock.innerHTML = '';
 
                         for(let i = 0; i < portfolioCategoryBtns.length; i++) {
@@ -210,6 +212,7 @@
                                     newImage.src = `${PATH}/p${j + 1}.jpg`;
                                     newImage.setAttribute('class', 'portfolio__image');
                                     newImage.setAttribute('alt', 'Portfolio images');
+                                    newImage.setAttribute('data-tooltip', 'click me');
                                     portfolioImagesBlock.appendChild(newImage);
                                 }
                                 break;
@@ -220,7 +223,6 @@
             }
 
             function magnifyImage() {
-
                 portfolioImagesBlock.addEventListener('click', (e) => {
                     let IMAGES = document.querySelectorAll('.portfolio__image');
                     
@@ -252,6 +254,7 @@
                         setTimeout(() => {
                             overlay.style.width = '100%';
                             overlay.style.height = '100%';
+                            overlay.style.opacity = 1;
                         }, 100);
                         closeMagnifyImage(overlay);
                     }
@@ -265,6 +268,7 @@
                         if((e.target.className == 'close' && e.target.tagName == 'I') || (e.target.className == 'overlay' && e.target.tagName == 'DIV')) {
                             setTimeout(() => {
                                 overlay.style.height = '0%';
+                                overlay.style.opacity = 0;
                             }, 100);
                             setTimeout(() => {
                                 overlay.remove();
@@ -276,11 +280,51 @@
             }
 
             function addBalloonHint() {
-                
+                document.addEventListener('mouseover', getTooltip);
+                document.addEventListener('mouseout', getTooltip);
+
+                function getTooltip(e) {
+                    let dataTooltip = document.querySelectorAll('[data-tooltip]');
+
+                    let tooltipBlock = document.createElement('div');
+                    tooltipBlock.classList.add('tooltip');
+                    tooltipBlock.innerText = e.target.getAttribute('data-tooltip');
+
+                    if((e.target.hasAttribute('data-tooltip') && !e.target.classList.contains('category_active')) && e.type == 'mouseover') {
+                        
+                        document.body.appendChild(tooltipBlock);
+                        let blockCoordinates = e.target.getBoundingClientRect(),
+                            centeredBlock = blockCoordinates.left + blockCoordinates.width / 2 - tooltipBlock.offsetWidth / 2,
+                            topBlock = blockCoordinates.top - tooltipBlock.offsetHeight;
+
+                        tooltipBlock.style.opacity = 1;
+                        tooltipBlock.style.left = `${centeredBlock}px`;
+                        tooltipBlock.style.top = `${topBlock - 25}px`;
+
+                        window.addEventListener('scroll', (e) => {
+                            tooltipBlock.remove();
+                            return;
+                        });
+                    }
+
+                    if((e.target.hasAttribute('data-tooltip') && !e.target.classList.contains('category_active')) && e.type == 'mouseout') {
+                        let tooltipBlock = document.querySelector('.tooltip');
+
+                        if (tooltipBlock != null) {
+                            setTimeout(() => {
+                                tooltipBlock.style.top = 0;
+                                tooltipBlock.style.opacity = 0;
+                            }, 100);
+                            
+                            tooltipBlock.remove();
+                        }
+                    }
+                }
             }
             
             switchImageCategory();
             magnifyImage();
+            addBalloonHint();
         }
     </script>
 </body>
