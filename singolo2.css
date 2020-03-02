@@ -193,6 +193,8 @@
     fill: black;
 }
 
+/* js dynamic blocks */
+
 .overlay {
     display: flex;
     justify-content: center;
@@ -261,6 +263,49 @@
     background: red;
 }
 
+.next,
+.previous {
+    width: 50px;
+    height: 50px;
+    background: rgba(255, 255, 255, .5);
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 40px;
+    font-weight: bold;
+    transition: all .2s;
+    opacity: 0;
+}
+
+.previous.show-arrows-left,
+.next.show-arrows-right {
+    opacity: 1;
+    transition: all .2s;
+}
+
+.previous.show-arrows-left {
+    left: 0;
+}
+.next.show-arrows-right {
+    right: 0;
+}
+
+.next {
+    right: -50px;
+}
+
+.previous {
+    left: -50px;
+}
+
+.next:hover,
+.previous:hover {
+    cursor: pointer;
+}
+
 .tooltip {
     position: fixed;
     padding: 10px;
@@ -281,4 +326,10 @@
     border: 10px solid transparent;
     border-top: 10px solid black;
 }
-	
+
+.magnify-img-item {
+    display: flex;
+    overflow: hidden;
+}
+    
+/* js dynamic blocks */

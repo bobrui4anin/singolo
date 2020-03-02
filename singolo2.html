@@ -192,7 +192,7 @@
             const QUANTITY_IMAGES = 12;
 
             function switchImageCategory() {
-                portfolioCategory.addEventListener('click', function (e) {
+                portfolioCategory.addEventListener('click', (e) => {
                     if(e.target.className == 'img-category' && e.target.tagName == 'SPAN') {
                         for(let i = 0; i < portfolioCategoryBtns.length; i++) {
                             portfolioCategoryBtns[i].classList.remove('category_active');
@@ -231,24 +231,45 @@
                         overlay.classList.add('overlay');
                         document.body.appendChild(overlay);
 
-                        let fullSizeImage = new Image();
-                        fullSizeImage.setAttribute('class', 'image_full');
-                        fullSizeImage.setAttribute('alt', 'Portfolio image');
+                        let magnifyImgWrapper = document.createElement('div');
+                        magnifyImgWrapper.classList.add('magnify-img-item');
+                        
+
+                        let currentIndexSlider = 0;
                         
                         for(let i = 0; i < IMAGES.length; i++) {
+                            let fullSizeImage = new Image();
+                            fullSizeImage.setAttribute('class', 'image_full');
+                            fullSizeImage.setAttribute('alt', 'Portfolio image');
+                            // let pathToImage = IMAGES[i].src;
+                            fullSizeImage.setAttribute('src', IMAGES[i].src);
+                            fullSizeImage.style.display = 'none';
                             if(e.target == IMAGES[i]) {
-                                let pathToImage = IMAGES[i].src;
-                                fullSizeImage.setAttribute('src', pathToImage);
+                                currentIndexSlider = i;
+                                fullSizeImage.style.display = 'block';
                             }
+                            
+                            magnifyImgWrapper.appendChild(fullSizeImage);
+                            
                         }
 
                         let close = document.createElement('i');
                         close.classList.add('close');
 
+                        let next = document.createElement('span');
+                        next.classList.add('next');
+                        next.innerText = '❯';
+
+                        let previous = document.createElement('span');
+                        previous.classList.add('previous');
+                        previous.innerText = '❮';
+
                         let wrapper = document.createElement('div');
                         wrapper.classList.add('magnify-wrapper');
-                        wrapper.appendChild(fullSizeImage);
+                        wrapper.appendChild(magnifyImgWrapper);
                         wrapper.appendChild(close);
+                        wrapper.appendChild(next);
+                        wrapper.appendChild(previous);
                         overlay.appendChild(wrapper);
 
                         setTimeout(() => {
@@ -256,15 +277,59 @@
                             overlay.style.height = '100%';
                             overlay.style.opacity = 1;
                         }, 100);
+                        thumbMagnifiedImage(next, previous, wrapper, currentIndexSlider);
                         closeMagnifyImage(overlay);
                     }
                 });
 
             }
 
+            function thumbMagnifiedImage(next, previous, imgWrapper, currentIndexSlider) {
+                let images = document.querySelectorAll('.image_full');
+
+                if(next && previous && images) {
+                    next.addEventListener('click', (e) => {
+                        ++currentIndexSlider;
+                        if(currentIndexSlider == images.length) {
+                            currentIndexSlider = 0;
+                        }
+                        for(let i = 0; i < images.length; i++) {
+                            images[i].style.display='none'; 
+                        }
+                        images[currentIndexSlider].style='block'; 
+                    });
+
+                    previous.addEventListener('click', (e)=> {
+                        --currentIndexSlider;
+                        if(currentIndexSlider < 0) {
+                            currentIndexSlider=images.length - 1;
+                        } 
+                        for(let i=0; i < images.length; i++) {
+                            images[i].style.display='none';
+                        }
+                        images[currentIndexSlider].style='block';
+                    });
+
+                    imgWrapper.addEventListener('mouseenter', showArrows);
+                    imgWrapper.addEventListener('mouseleave', showArrows);
+                    
+                    function showArrows(e) {
+                        if((e.target.className == 'magnify-wrapper' && e.target.tagName == 'DIV') && e.type == 'mouseenter') {
+                            previous.classList.add('show-arrows-left');
+                            next.classList.add('show-arrows-right');
+                        }
+
+                        if((e.target.className == 'magnify-wrapper' && e.target.tagName == 'DIV') && e.type == 'mouseleave') {
+                            previous.classList.remove('show-arrows-left');
+                            next.classList.remove('show-arrows-right');
+                        }
+                    }
+                }
+            }
+
             function closeMagnifyImage(overlay) {
                 if(overlay) {
-                    overlay.addEventListener('click', function(e) {
+                    overlay.addEventListener('click', (e) => {
                         if((e.target.className == 'close' && e.target.tagName == 'I') || (e.target.className == 'overlay' && e.target.tagName == 'DIV')) {
                             setTimeout(() => {
                                 overlay.style.height = '0%';
