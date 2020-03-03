@@ -67,6 +67,9 @@ body {
     border-bottom: 6px solid #323746;
     color: #fff;
     font-weight: 700;
+    position: sticky;
+    top: 0;
+    z-index: 4;
 }
 
 .header-wrapper {
