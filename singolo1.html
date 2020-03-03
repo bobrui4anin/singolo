@@ -32,7 +32,7 @@
             <div class="container">
                 <div class="slider__wrapper">
                     <div class="slider__items">
-                        <div class="slider__item current__slide current__slide">
+                        <div class="slider__item current__slide">
                             <div class="slider__item_centered">
                                 <div class="item-img-vertical">
                                     <img src="./assets/images/slider/vertical-phone.png" alt="vertical phone">
@@ -49,7 +49,7 @@
                         </div>
                         <div class="slider__item">
                             <div class="item-img">
-                                <img src="./assets/images/slider/just-phone.png" alt="just phone">
+                                <img src="./assets/images/slider/laptop.png" alt="laptop" width="600">
                             </div>
                         </div>
                     </div>
@@ -127,6 +127,66 @@
             </div>
         </section>
     </main>
+
+    <script>    
+        function slideMainSlider() {
+            let slides = document.querySelectorAll('.slider__item'),
+                currentIndex = 0,
+                nextSlide = document.querySelector('.slider__control_next'),
+                previousSlide = document.querySelector('.slider__control_prev');
+
+            for(let i = 0; i < slides.length; i++) {
+                slides[i].style.left = (i * 100) + '%';
+            }
+
+            nextSlide.addEventListener('click', (e) => {
+                e.preventDefault();
+                
+                for(let i = 0; i < slides.length; i++) {
+                    if(currentIndex == slides.length - 1) {
+
+                        for(let j = 0; j < slides.length; j++) {
+                            slides[j].style.left = (j * 100) + '%';
+                        }
+                        break;
+
+                    }else {
+                        slides[i].style.left = slides[i].style.left.replace('%', '') - 100 + '%';
+                    }
+                }
+
+                if(currentIndex == slides.length - 1) {
+                    currentIndex = 0;
+                }else {
+                    currentIndex++;
+                }
+            });
+
+            previousSlide.addEventListener('click', (e) => {
+                e.preventDefault();
+                for(let i = 0; i < slides.length; i++) {
+                    if(currentIndex == 0) {
+
+                        for(let j = slides.length - 1, counter = 0; j >= 0; j--, counter++) {
+                            slides[j].style.left = -(counter * 100) + '%';
+                        }
+                        break;
+
+                    }else {
+                        slides[i].style.left = +slides[i].style.left.replace('%', '') + 100 + '%';
+                    }
+                }
+
+                if(currentIndex == 0) {
+                    currentIndex = slides.length - 1;
+                }else {
+                    currentIndex--;
+                }
+            });
+        }
+
+        slideMainSlider();
+    </script>
 </body>
 </html>
 
