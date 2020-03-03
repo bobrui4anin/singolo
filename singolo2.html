@@ -247,6 +247,7 @@
                             if(e.target == IMAGES[i]) {
                                 currentIndexSlider = i;
                                 fullSizeImage.style.display = 'block';
+                                fullSizeImage.style.opacity = 1;
                             }
                             
                             magnifyImgWrapper.appendChild(fullSizeImage);
@@ -294,20 +295,30 @@
                             currentIndexSlider = 0;
                         }
                         for(let i = 0; i < images.length; i++) {
-                            images[i].style.display='none'; 
+                            images[i].style.display = 'none';
+                            images[i].style.opacity = 0;
                         }
-                        images[currentIndexSlider].style='block'; 
+                        images[currentIndexSlider].style.display = 'block';
+
+                        setTimeout(() => {
+                            images[currentIndexSlider].style.opacity = 1; 
+                        }, 10);
                     });
 
                     previous.addEventListener('click', (e)=> {
                         --currentIndexSlider;
                         if(currentIndexSlider < 0) {
-                            currentIndexSlider=images.length - 1;
+                            currentIndexSlider = images.length - 1;
                         } 
-                        for(let i=0; i < images.length; i++) {
-                            images[i].style.display='none';
+                        for(let i = 0; i < images.length; i++) {
+                            images[i].style.display = 'none';
+                            images[i].style.opacity = 0;
                         }
-                        images[currentIndexSlider].style='block';
+                        images[currentIndexSlider].style.display = 'block';
+
+                        setTimeout(() => {
+                            images[currentIndexSlider].style.opacity = 1;
+                        }, 10);
                     });
 
                     imgWrapper.addEventListener('mouseenter', showArrows);

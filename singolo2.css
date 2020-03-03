@@ -217,6 +217,8 @@
 
 .image_full {
     width: 100%;
+    opacity: 0;
+    transition: all .3s ease;
 }
 
 .close {
