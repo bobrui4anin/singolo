@@ -150,6 +150,7 @@ body {
     height: 594px;
     justify-content: space-around;
     align-items: center;
+    width: 940px;
 }
 
 .item-img-vertical {
@@ -316,4 +317,15 @@ body {
     letter-spacing: -0.1px;
 }
 
-    
+.slider__items {
+    display: flex;
+    overflow: hidden;
+}
+
+.slider__item.current__slide {
+    display: block;
+}
+
+.slider__item {
+    display: none;
+}
