@@ -119,7 +119,6 @@
                     inputSubmit = document.querySelector('.form__input_submit'),
                     emailMask = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/,
                     nameMask = /^[A-Za-z]+(\s)?([A-Za-z]+)?$/;
-                // console.log(inputName, inputEmail);
 
                 inputEmail.addEventListener('input', function (e) {
                     let emailValue = this.value;
@@ -162,7 +161,6 @@
                 });
 
                 inputSubmit.addEventListener('click', function (e) {
-                    console.log('inputEmail.value.length' + inputEmail.value.length);
                     if(this.hasAttribute('disabled')) {
                         if(inputName.test(inputEmail.value) === false || inputEmail.value.length == 0) {
                             this.style.border = '2px solid red';
