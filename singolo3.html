@@ -20,12 +20,12 @@
             </p>
             <div class="layout-2-column">
                 <form class="feedback__form" action="https://google.com/search" method="get">
-                    <input class="form__input_text" type="text" placeholder="Name (Required)" required>
-                    <input class="form__input_text" type="email" placeholder="Email (Required)" required>
+                    <input class="form__input_text" type="text" name="name" placeholder="Name (Required)" required>
+                    <input class="form__input_text" type="email" name="email" placeholder="Email (Required)" required>
                     <input class="form__input_text" type="text" placeholder="Subject">
                     <textarea class="form__textarea_text" cols="30" rows="11"
                         placeholder="Describe your project in detail..."></textarea>
-                    <input class="form__input_submit" type="submit" value="Send">
+                    <input class="form__input_submit" type="submit" value="Send" disabled>
                 </form>
                 <div class="feedback__contact-info">
                     <h4 class="contact-info">Contact Information</h4>
@@ -110,6 +110,73 @@
             </div>
         </div>
     </footer>
+
+    <script>
+        window.onload = function() {
+            function validateForm() {
+                let inputName = document.querySelector('input[name="name"]'),
+                    inputEmail = document.querySelector('input[name="email"]'),
+                    inputSubmit = document.querySelector('.form__input_submit'),
+                    emailMask = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/,
+                    nameMask = /^[A-Za-z]+(\s)?([A-Za-z]+)?$/;
+                // console.log(inputName, inputEmail);
+
+                inputEmail.addEventListener('input', function (e) {
+                    let emailValue = this.value;
+                    if(emailMask.test(emailValue) === true) {
+                        this.style.border = '2px solid green';
+
+                        if(nameMask.test(inputName.value) === true) {
+                            inputSubmit.removeAttribute('disabled');
+                        }else {
+                            inputSubmit.setAttribute('disabled', 'disabled');
+                        }
+                    }else {
+                        this.style.border = '2px solid red';
+                        inputSubmit.setAttribute('disabled', 'disabled');
+                    }
+
+                    if(!this.value.length) {
+                        this.style.border = 'none';
+                    }
+                });
+
+                inputName.addEventListener('input', function (e) {
+                    let nameValue = this.value;
+                    if(nameMask.test(nameValue) === true) {
+                        this.style.border = '2px solid green';
+
+                        if(emailMask.test(inputEmail.value) === true) {
+                            inputSubmit.removeAttribute('disabled');
+                        }else {
+                            inputSubmit.setAttribute('disabled', 'disabled');
+                        }
+                    }else {
+                        this.style.border = '2px solid red';
+                        inputSubmit.setAttribute('disabled', 'disabled');
+                    }
+
+                    if(!this.value.length) {
+                        this.style.border = 'none';
+                    }
+                });
+
+                inputSubmit.addEventListener('click', function (e) {
+                    console.log('inputEmail.value.length' + inputEmail.value.length);
+                    if(this.hasAttribute('disabled')) {
+                        if(inputName.test(inputEmail.value) === false || inputEmail.value.length == 0) {
+                            this.style.border = '2px solid red';
+                        }
+                        if(inputName.test(inputName.value) === false || inputName.value.length == 0) {
+                            this.style.border = '2px solid red';
+                        }
+                    }
+                });
+            }
+
+            validateForm();
+        }
+    </script>
 
 </body>
 </html>

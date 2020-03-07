@@ -92,6 +92,12 @@ textarea.form__textarea_text::-webkit-input-placeholder {
     box-shadow: -5px 5px 1px;
 }
 
+.form__input_submit:disabled {
+    border: 1px solid #999999;
+    background-color: #cccccc;
+    color: #666666;
+}
+
 .feedback__contact-info {
     width: calc(34% - 20px);
     color: #f0d8d9;
