@@ -148,7 +148,7 @@
     text-align: justify;
     font-size: 1.2rem;
     line-height: 21.56px;
-    margin-top: 7px;
+    margin: 7px 0 23px;
 }
 
 .employee:first-child .employee__text {
@@ -157,10 +157,6 @@
 
 .employee:last-child .employee__text {
     letter-spacing: -0.1px;
-}
-
-.social-links {
-    margin-top: 23px;
 }
 
 .social__link {
