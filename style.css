@@ -917,3 +917,63 @@ svg.svg_white:hover {
 }
 
 /* js dynamic blocks */
+
+@-moz-document url-prefix() {
+    .header-title {
+        margin: 24px 0 0;
+    }
+
+    .navigation__links {
+        margin-top: 39px;
+    }
+
+    .portfolio__img-category {
+        margin: 13px 0 20px;
+
+    }
+
+    .svg_heart,
+    .svg_phone,
+    .svg_bubble {
+        background-position: 12px 14px;
+    }
+
+    .svg_pen,
+    .svg_star {
+        background-position: 12px 12px;
+    }
+
+    .svg_phone {
+        background-position: 17px 12px;
+    }
+
+    .employee:first-child .employee__text {
+        letter-spacing: -0.15px;
+    }
+
+    .employee__text {
+        line-height: 21px;
+    }
+
+    .form__input_text,
+    .form__textarea_text,
+    .form__input_submit {
+        padding: 11px 12px;
+    }
+
+    form .form__textarea_text {
+        padding: 10px 12px;
+    }
+
+    .contact-description {
+        line-height: 21.5px;
+    }
+
+    .copyright {
+        letter-spacing: -0.18px;
+    }
+
+    .social__link {
+        margin-right: 3.9px;
+    }
+}
