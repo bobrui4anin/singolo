@@ -623,6 +623,17 @@ textarea.form__textarea_text::-webkit-input-placeholder {
     font-family: 'Lato';
 }
 
+input.form__input_text:-moz-placeholder,
+input.form__input_text::-moz-placeholder,
+textarea.form__textarea_text:-moz-placeholder,
+textarea.form__textarea_text::-moz-placeholder {
+    color: #f48c8f;
+    font-size: 1.2rem;
+    font-weight: 400;
+    padding-left: 2px;
+    font-family: 'Lato';
+}
+
 textarea.form__textarea_text::-webkit-input-placeholder {
     padding-left: 4px;
     letter-spacing: -0.1px;
