@@ -415,11 +415,10 @@ window.onload = function () {
 
                 let wrapper = document.createElement('div');
                 wrapper.classList.add('form-popup');
-                wrapper.innerText = 'Письмо отправлено';
 
-                let textP = document.createElement('p');
-                textP.innerText = `${inputSubject.value.toLowerCase() === 'singolo' ? 'Singolo' : 'Без темы'}
-                ${inputDescribe.value.toLowerCase() === 'portfolio project' ? 'Portfolio project' : 'Без описания'}`;
+                let textP = document.createElement('div');
+                textP.innerHTML = `<p class="success">Письмо отправлено</p><b>Тема:</b><p class='popup-description'>${inputSubject.value ? inputSubject.value : 'Без темы'}</p>
+                <b>Описание:</b><p class='popup-description'>${inputDescribe.value ? inputDescribe.value : 'Без описания'}</p>`;
 
                 overlay.appendChild(wrapper);
                 wrapper.appendChild(textP);

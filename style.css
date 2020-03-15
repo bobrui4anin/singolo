@@ -1058,10 +1058,24 @@ svg.svg_white:hover {
     flex-direction: column;
 }
 
-.form-popup p {
+.success {
+    font-weight: bold;
+    color: green;
+}
+
+.form-popup div {
     margin: 15px 0;
     line-height: 3rem;
     text-align: center;
+}
+
+.popup-description {
+    max-width: 500px;
+    overflow: auto;
+    word-break: break-word;
+    max-height: 200px;
+    padding: 0 10px;
+    text-align: justify;
 }
 
 /* js dynamic blocks */
