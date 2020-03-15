@@ -163,12 +163,17 @@ window.onload = function () {
                 let currentIndexSlider = 0;
 
                 for (let i = 0; i < IMAGES.length; i++) {
+                    IMAGES[i].classList.remove('portfolio-img-active');
+                }
+
+                for (let i = 0; i < IMAGES.length; i++) {
                     let fullSizeImage = new Image();
                     fullSizeImage.setAttribute('class', 'image_full');
                     fullSizeImage.setAttribute('alt', 'Portfolio image');
                     fullSizeImage.setAttribute('src', IMAGES[i].src);
                     fullSizeImage.style.display = 'none';
                     if (e.target == IMAGES[i]) {
+                        IMAGES[i].classList.add('portfolio-img-active');
                         currentIndexSlider = i;
                         fullSizeImage.style.display = 'block';
                         fullSizeImage.style.opacity = 1;
@@ -463,10 +468,6 @@ window.onload = function () {
         });
     }
 
-    function addBorderForPortfolioImg() {
-        
-    }
-
     stickHeader();
     animateScroll();
     animateMainMenu();
@@ -477,5 +478,4 @@ window.onload = function () {
     validateForm();
     changeSlidePosition();
     addInteractiveFor1Slide();
-    addBorderForPortfolioImg();
 }
