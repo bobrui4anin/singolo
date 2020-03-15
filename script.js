@@ -463,6 +463,10 @@ window.onload = function () {
         });
     }
 
+    function addBorderForPortfolioImg() {
+        
+    }
+
     stickHeader();
     animateScroll();
     animateMainMenu();
@@ -473,4 +477,5 @@ window.onload = function () {
     validateForm();
     changeSlidePosition();
     addInteractiveFor1Slide();
+    addBorderForPortfolioImg();
 }
