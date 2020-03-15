@@ -208,7 +208,7 @@ window.onload = function () {
                     overlay.style.opacity = 1;
                 }, 100);
                 thumbMagnifiedImage(next, previous, wrapper, currentIndexSlider);
-                closeMagnifyImage(overlay);
+                closeOverlay(overlay);
             }
         });
 
@@ -267,10 +267,23 @@ window.onload = function () {
         }
     }
 
-    function closeMagnifyImage(overlay) {
+    function closeOverlay(overlay, inputName, inputEmail, inputSubject, inputDescribe, inputSubmit) {
         if (overlay) {
             overlay.addEventListener('click', (e) => {
-                if ((e.target.className == 'close' && e.target.tagName == 'I') || (e.target.className == 'overlay' && e.target.tagName == 'DIV')) {
+                if ((e.target.className == 'popup-close' && e.target.tagName == 'SPAN') || e.target.classList.contains('overlay-form')) {
+                    inputSubject.value = '';
+                    inputDescribe.value = '';
+                    inputName.value = '';
+                    inputEmail.value = '';
+
+                    inputName.style.border = 'none';
+                    inputEmail.style.border = 'none';
+
+                    inputSubmit.classList.add('disabled');
+                    inputSubmit.setAttribute('data-tooltip', 'required fields: name & email');
+                }
+
+                if ((e.target.className == 'close' && e.target.tagName == 'I') || (e.target.className == 'popup-close' && e.target.tagName == 'SPAN') || (e.target.className == 'overlay' && e.target.tagName == 'DIV') || e.target.classList.contains('overlay-form')) {
                     setTimeout(() => {
                         overlay.style.height = '0%';
                         overlay.style.opacity = 0;
@@ -330,6 +343,8 @@ window.onload = function () {
     function validateForm() {
         let inputName = document.querySelector('input[name="name"]'),
             inputEmail = document.querySelector('input[name="email"]'),
+            inputSubject = document.querySelector('input[name="subject"]'),
+            inputDescribe = document.querySelector('textarea[name="describe"]'),
             inputSubmit = document.querySelector('.form__input_submit'),
             emailMask = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/,
             nameMask = /^[A-Za-z]+(\s)?([A-Za-z]+)?$/;
@@ -381,14 +396,42 @@ window.onload = function () {
         });
 
         inputSubmit.addEventListener('click', function (e) {
+            e.preventDefault();
             if (this.classList.contains('disabled')) {
-                e.preventDefault();
                 if (emailMask.test(inputEmail.value) === false || inputEmail.value.length == 0) {
                     inputEmail.style.border = '2px solid red';
                 }
                 if (nameMask.test(inputName.value) === false || inputName.value.length == 0) {
                     inputName.style.border = '2px solid red';
                 }
+            }else {
+                let overlay = document.createElement('div');
+                overlay.classList.add('overlay', 'overlay-form');
+                document.body.appendChild(overlay);
+
+                let close = document.createElement('span');
+                close.innerText = 'OK';
+                close.classList.add('popup-close');
+
+                let wrapper = document.createElement('div');
+                wrapper.classList.add('form-popup');
+                wrapper.innerText = 'Письмо отправлено';
+
+                let textP = document.createElement('p');
+                textP.innerText = `${inputSubject.value.toLowerCase() === 'singolo' ? 'Singolo' : 'Без темы'}
+                ${inputDescribe.value.toLowerCase() === 'portfolio project' ? 'Portfolio project' : 'Без описания'}`;
+
+                overlay.appendChild(wrapper);
+                wrapper.appendChild(textP);
+                wrapper.appendChild(close);
+
+                setTimeout(() => {
+                    overlay.style.width = '100%';
+                    overlay.style.height = '100%';
+                    overlay.style.opacity = 1;
+                }, 100);
+
+                closeOverlay(overlay, inputName, inputEmail, inputSubject, inputDescribe, inputSubmit);
             }
         });
     }

@@ -1034,6 +1034,36 @@ svg.svg_white:hover {
     overflow: hidden;
 }
 
+.popup-close {
+    padding: 10px 50px;
+    background: #f06c64;
+    border-radius: 5px;
+    border: 1px solid #f06c64;
+    color: #fff;
+    transition: all .3s;
+    text-align: center;
+}
+
+.popup-close:hover {
+    cursor: pointer;
+    color: red;
+    background: #fff;
+}
+
+.form-popup {
+    background: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+}
+
+.form-popup p {
+    margin: 15px 0;
+    line-height: 3rem;
+    text-align: center;
+}
+
 /* js dynamic blocks */
 
 @-moz-document url-prefix() {
