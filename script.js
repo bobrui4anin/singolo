@@ -413,6 +413,45 @@ window.onload = function () {
         });
     }
 
+    function changeSlidePosition() {
+        let slidesParent = document.querySelector('.item-img');
+
+        slidesParent.addEventListener('click', function (e) {
+            if (e.target.offsetParent.getAttribute('data-position') == '2' && e.target.className == 'slide__button-home') {
+                e.target.offsetParent.children[1].classList.toggle('invisible');
+            }
+
+            if (e.target.offsetParent.className == 'img-phone' && e.target.offsetParent.tagName == 'DIV' && e.target.offsetParent.getAttribute('data-position') != '2') {
+                console.log(e);
+                let slides = document.querySelectorAll('[data-position]'),
+                    activeTargetPosition = e.target.offsetParent.getAttribute('data-position'),
+                    tooltip = document.querySelector('.tooltip');
+
+                for (let i = 0; i < slides.length; i++) {
+                    if (slides[i].classList.contains('img-phone_full-size')) {
+                        slides[i].classList.remove('img-phone_full-size');
+                        console.log(slides[i].offsetParent.children[0]);
+                        console.log(slides[i].children[0]);
+                        console.log(slides[i].offsetParent.children[2]);
+                        slides[i].children[2].removeAttribute('data-tooltip');
+                        slides[i].setAttribute('data-position', activeTargetPosition);
+                        slides[i].children[0].setAttribute('data-tooltip', 'click to change position');
+                    }
+                }
+
+                if (tooltip) {
+                    tooltip.remove();
+                }
+
+                e.target.offsetParent.setAttribute('data-position', '2');
+                e.target.offsetParent.children[2].setAttribute('data-tooltip', 'click me');
+                e.target.offsetParent.children[0].removeAttribute('data-tooltip');
+                e.target.offsetParent.classList.add('img-phone_full-size');
+            }
+        });
+
+    }
+
     stickHeader();
     animateScroll();
     animateMainMenu();
@@ -421,5 +460,5 @@ window.onload = function () {
     magnifyImage();
     addBalloonHint();
     validateForm();
-
+    changeSlidePosition();
 }
