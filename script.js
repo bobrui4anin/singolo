@@ -55,7 +55,8 @@ window.onload = function () {
         let slides = document.querySelectorAll('.slider__item'),
             currentIndex = 0,
             nextSlide = document.querySelector('.slider__control_next'),
-            previousSlide = document.querySelector('.slider__control_prev');
+            previousSlide = document.querySelector('.slider__control_prev'),
+            sliderBlock = document.querySelector('.slider');
 
         for (let i = 0; i < slides.length; i++) {
             slides[i].style.left = (i * 100) + '%';
@@ -82,6 +83,7 @@ window.onload = function () {
             } else {
                 currentIndex++;
             }
+            currentIndex % 2 != 0 ? sliderBlock.classList.add('bg_blue') : sliderBlock.classList.remove('bg_blue');
         });
 
         previousSlide.addEventListener('click', (e) => {
@@ -104,6 +106,7 @@ window.onload = function () {
             } else {
                 currentIndex--;
             }
+            currentIndex % 2 != 0 ? sliderBlock.classList.add('bg_blue') : sliderBlock.classList.remove('bg_blue');
         });
     }
 
@@ -422,7 +425,6 @@ window.onload = function () {
             }
 
             if (e.target.offsetParent.className == 'img-phone' && e.target.offsetParent.tagName == 'DIV' && e.target.offsetParent.getAttribute('data-position') != '2') {
-                console.log(e);
                 let slides = document.querySelectorAll('[data-position]'),
                     activeTargetPosition = e.target.offsetParent.getAttribute('data-position'),
                     tooltip = document.querySelector('.tooltip');
@@ -430,9 +432,6 @@ window.onload = function () {
                 for (let i = 0; i < slides.length; i++) {
                     if (slides[i].classList.contains('img-phone_full-size')) {
                         slides[i].classList.remove('img-phone_full-size');
-                        console.log(slides[i].offsetParent.children[0]);
-                        console.log(slides[i].children[0]);
-                        console.log(slides[i].offsetParent.children[2]);
                         slides[i].children[2].removeAttribute('data-tooltip');
                         slides[i].setAttribute('data-position', activeTargetPosition);
                         slides[i].children[0].setAttribute('data-tooltip', 'click to change position');
@@ -449,7 +448,19 @@ window.onload = function () {
                 e.target.offsetParent.classList.add('img-phone_full-size');
             }
         });
+    }
 
+    function addInteractiveFor1Slide() {
+        let wrapperForSlides = document.querySelector('.slider__item_centered'),
+            mobileBtnHome = document.querySelectorAll('.slide__button-home');
+
+        wrapperForSlides.addEventListener('click', function(e) {
+            for(let i = 0; i < mobileBtnHome.length; i++) {
+                if(e.target == mobileBtnHome[i]) {
+                    e.target.previousElementSibling.classList.toggle('invisible');
+                }
+            }
+        });
     }
 
     stickHeader();
@@ -461,4 +472,5 @@ window.onload = function () {
     addBalloonHint();
     validateForm();
     changeSlidePosition();
+    addInteractiveFor1Slide();
 }
