@@ -5,6 +5,7 @@ window.onload = function () {
 
         const options = {
             threshold: 0.95,
+            root: null
         };
 
         let observer = new IntersectionObserver(navCheck, options);
@@ -13,21 +14,13 @@ window.onload = function () {
             entries.forEach((entry) => {
                 const blocksID = entry.target.id;
                 const activeAnchor = document.querySelector(`[data-page=${blocksID}]`);
-                if (entry.intersectionRatio > 0.7) {
+                if (entry.intersectionRatio > 0.75) {
                     let activeAnchors = document.querySelectorAll('nav a[data-page]');
                     activeAnchors.forEach((anchor) => {
                         anchor.classList.remove('active');
                     });
                     activeAnchor.classList.add('active');
                 }
-
-                const coords = activeAnchor.getBoundingClientRect();
-                const directions = {
-                    height: coords.height,
-                    width: coords.width,
-                    top: coords.top,
-                    left: coords.left
-                };
             });
         }
 
@@ -41,6 +34,12 @@ window.onload = function () {
 
         for (let anchor of anchors) {
             anchor.addEventListener('click', (e) => {
+                for (let i = 0; i < anchors.length; i++) {
+                    anchors[i].classList.remove('active');
+                    if (e.target == anchors[i]) {
+                        anchors[i].classList.add('active');
+                    }
+                }
                 e.preventDefault();
                 const blockID = anchor.getAttribute('href');
                 document.querySelector(`${blockID}`).scrollIntoView({
