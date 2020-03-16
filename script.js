@@ -1,40 +1,36 @@
 window.onload = function () {
 
     function animateMainMenu() {
-        let sections = document.querySelectorAll('[id]');
+        let toBottom = screen.height < 1000 ? 1000 : screen.height >= 1000 && screen.height <= 1200 ? 1250 : screen.height >= 1410 ? 1485 : 1500,
+            scrollHeight = Math.max(
+                document.body.scrollHeight, document.documentElement.scrollHeight,
+                document.body.offsetHeight, document.documentElement.offsetHeight,
+                document.body.clientHeight, document.documentElement.clientHeight
+            );
+        window.addEventListener('scroll', function (e) {
+            let activeAnchors = document.querySelectorAll('nav a[data-page]'),
+                scrollFromTop = window.scrollY;
 
-        const options = {
-            threshold: 0.95,
-            root: null
-        };
+            activeAnchors.forEach((anchor) => {
+                let sectionsID = document.querySelector(anchor.hash);
 
-        let observer = new IntersectionObserver(navCheck, options);
+                if (scrollHeight - scrollFromTop <= toBottom) {
+                    anchor.classList.remove('active');
+                    activeAnchors[activeAnchors.length - 1].classList.add('active');
+                    return;
+                }
 
-        function navCheck(entries) {
-            entries.forEach((entry) => {
-                const blocksID = entry.target.id;
-                const activeAnchor = document.querySelector(`[data-page=${blocksID}]`);
-
-                // console.log(entry.time);
-                // console.log(entry.rootBounds);
-                // console.log(entry.boundingClientRect);
-                // console.log(entry.intersectionRect);
-                // console.log(entry.intersectionRatio);
-                // console.log(entry.target);
-                // console.log(entry.isIntersecting);
-
-                if (entry.isIntersecting) {
-                    let activeAnchors = document.querySelectorAll('nav a[data-page]');
-                    activeAnchors.forEach((anchor) => {
+                if (sectionsID.offsetTop <= scrollFromTop && 
+                    sectionsID.offsetTop + sectionsID.offsetHeight > scrollFromTop) {
+                    anchor.classList.add('active');
+                } else {
+                    if (scrollFromTop <= 150) {
+                        activeAnchors[0].classList.add('active');
+                    }else {
                         anchor.classList.remove('active');
-                    });
-                    activeAnchor.classList.add('active');
+                    }
                 }
             });
-        }
-
-        sections.forEach(section => {
-            observer.observe(section);
         });
     }
 
@@ -462,7 +458,7 @@ window.onload = function () {
                 headerStub.style.display = 'block';
             } else {
                 header.style.height = '95px';
-                header.style.position = 'unset';
+                // header.style.position = 'unset';
                 h1.style.marginTop = '25px';
                 navLinks.style.marginTop = '40px';
                 logo.style.fontSize = '2.6rem';
