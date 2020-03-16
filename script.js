@@ -14,7 +14,16 @@ window.onload = function () {
             entries.forEach((entry) => {
                 const blocksID = entry.target.id;
                 const activeAnchor = document.querySelector(`[data-page=${blocksID}]`);
-                if (entry.intersectionRatio > 0.75) {
+
+                // console.log(entry.time);
+                // console.log(entry.rootBounds);
+                // console.log(entry.boundingClientRect);
+                // console.log(entry.intersectionRect);
+                // console.log(entry.intersectionRatio);
+                // console.log(entry.target);
+                // console.log(entry.isIntersecting);
+
+                if (entry.isIntersecting) {
                     let activeAnchors = document.querySelectorAll('nav a[data-page]');
                     activeAnchors.forEach((anchor) => {
                         anchor.classList.remove('active');
