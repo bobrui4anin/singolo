@@ -347,7 +347,7 @@ window.onload = function () {
             inputDescribe = document.querySelector('textarea[name="describe"]'),
             inputSubmit = document.querySelector('.form__input_submit'),
             emailMask = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/,
-            nameMask = /^[A-Za-z]+(\s)?([A-Za-z]+)?$/;
+            nameMask = /^[A-Za-zа-яА-Я]+(\s)?([A-Za-zа-яА-Я]+)?$/;
 
         inputEmail.addEventListener('input', function (e) {
             let emailValue = this.value;
