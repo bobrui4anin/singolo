@@ -897,6 +897,7 @@ svg.svg_white:hover {
 .magnify-wrapper {
     position: relative;
     z-index: 2;
+    max-width: 80%;
 }
 
 .image_full {
