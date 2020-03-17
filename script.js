@@ -455,14 +455,15 @@ window.onload = function () {
                 h1.style.marginTop = '4px';
                 navLinks.style.marginTop = '15px';
                 logo.style.fontSize = '1.8rem';
-                headerStub.style.display = 'block';
+                headerStub.style.height = '45px';
             } else {
                 header.style.height = '95px';
                 // header.style.position = 'unset';
                 h1.style.marginTop = '25px';
                 navLinks.style.marginTop = '40px';
                 logo.style.fontSize = '2.6rem';
-                headerStub.style.display = 'none';
+                // headerStub.style.display = 'none';
+                headerStub.style.height = '0';
             }
         });
     }
