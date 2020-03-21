@@ -136,6 +136,7 @@ window.onload = function () {
                     if (e.target == portfolioCategoryBtns[i]) {
                         portfolioCategoryBtns[i].classList.add('category_active');
                         const PATH = `./assets/images/portfolio/${portfolioCategoryBtns[i].getAttribute('data-index')}`;
+                        let arrImages = [];
 
                         for (let j = 0; j < QUANTITY_IMAGES; j++) {
                             let newImage = new Image();
@@ -143,7 +144,13 @@ window.onload = function () {
                             newImage.setAttribute('class', 'portfolio__image');
                             newImage.setAttribute('alt', 'Portfolio images');
                             newImage.setAttribute('data-tooltip', 'click me');
-                            portfolioImagesBlock.appendChild(newImage);
+                            arrImages.push(newImage);
+                            if(j == QUANTITY_IMAGES - 1) {
+                                shuffle(arrImages);
+                                for(let k = 0; k < arrImages.length; k++) {
+                                    portfolioImagesBlock.appendChild(arrImages[k]);
+                                }
+                            }
                         }
                         break;
                     }
@@ -513,6 +520,14 @@ window.onload = function () {
                 }
             }
         });
+    }
+
+    function shuffle(array) {
+        for (let i = array.length - 1; i > 0; i--) {
+            let randomIndex = Math.floor(Math.random() * (i + 1));
+            [array[i], array[randomIndex]] = [array[randomIndex], array[i]];
+        }
+        return array;
     }
 
     stickHeader();
