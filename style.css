@@ -1329,4 +1329,50 @@ svg.svg_white:hover {
     .employee__text {
         margin: 0 0 12px;
     }
+
+    /* get-a-quote */
+    .feedback {
+        padding: 56px 0 27px;
+    }
+
+    .feedback-heading h2 {
+        letter-spacing: unset;
+    }
+
+    .feedback__text {
+        letter-spacing: unset;
+        text-align: unset;
+        margin: 0 0 23px 1px;
+    }
+
+    .feedback__form {
+        width: calc(64% + 2px);
+        margin-left: -1px;
+    }
+
+    .form__input_text {
+        margin-bottom: 12px;
+        padding: 11.5px 7px;
+    }
+
+    .form__textarea_text {
+        padding: 8.5px 12px 0 6px;
+        max-height: 159px;
+    }
+
+    .feedback__contact-info {
+        width: calc(34% - 16px);
+    }
+
+    .contact-info {
+        margin: 0;
+    }
+
+    .contact-description {
+        margin: -1px -2px 12px;
+    }
+
+    .contact__links .contact__link:first-child {
+        letter-spacing: unset;
+    }
 }
