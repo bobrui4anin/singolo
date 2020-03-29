@@ -454,23 +454,38 @@ window.onload = function () {
             headerStub = document.querySelector('.header-stub');
 
         window.addEventListener('scroll', function (e) {
-            let headerCoords = 0;
-            if (window.scrollY > 150) {
-                header.style.height = '50px';
-                header.style.position = 'sticky';
-                header.style.top = '0';
-                h1.style.marginTop = '4px';
-                navLinks.style.marginTop = '15px';
-                logo.style.fontSize = '1.8rem';
-                headerStub.style.height = '45px';
-            } else {
-                header.style.height = '95px';
-                // header.style.position = 'unset';
-                h1.style.marginTop = '25px';
-                navLinks.style.marginTop = '40px';
-                logo.style.fontSize = '2.6rem';
-                // headerStub.style.display = 'none';
-                headerStub.style.height = '0';
+            if (document.documentElement.clientWidth > 768) {
+                if (window.scrollY > 150) {
+                    header.style.height = '50px';
+                    header.style.position = 'sticky';
+                    header.style.top = '0';
+                    h1.style.marginTop = '4px';
+                    navLinks.style.marginTop = '15px';
+                    logo.style.fontSize = '1.8rem';
+                    headerStub.style.height = '45px';
+                } else {
+                    header.style.height = '95px';
+                    h1.style.marginTop = '25px';
+                    navLinks.style.marginTop = '40px';
+                    logo.style.fontSize = '2.6rem';
+                    headerStub.style.height = '0';
+                }
+            } else if (document.documentElement.clientWidth <= 768) {
+                if (window.scrollY > 150) {
+                    header.style.height = '50px';
+                    header.style.position = 'sticky';
+                    header.style.top = '0';
+                    h1.style.marginTop = '4px';
+                    navLinks.style.marginTop = '15px';
+                    logo.style.fontSize = '1.8rem';
+                    headerStub.style.height = '45px';
+                } else {
+                    header.style.height = '95px';
+                    h1.style.marginTop = '25px';
+                    navLinks.style.marginTop = '37px';
+                    logo.style.fontSize = '2.6rem';
+                    headerStub.style.height = '0';
+                }
             }
         });
     }
