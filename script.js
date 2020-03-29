@@ -545,6 +545,19 @@ window.onload = function () {
         return array;
     }
 
+    function removeTooltips() {
+        if (document.documentElement.clientWidth <= 768) {
+            let tooltips = document.querySelectorAll('[data-tooltip]');
+
+            for (let i = 0; i < tooltips.length; i++) {
+                if (i == tooltips.length - 1) {
+                    break;
+                }
+                tooltips[i].removeAttribute('data-tooltip');
+            }
+        }
+    }
+
     stickHeader();
     animateScroll();
     animateMainMenu();
@@ -555,4 +568,5 @@ window.onload = function () {
     validateForm();
     changeSlidePosition();
     addInteractiveFor1Slide();
+    removeTooltips();
 }
