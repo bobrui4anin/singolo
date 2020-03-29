@@ -1228,7 +1228,6 @@ svg.svg_white:hover {
         transition: all .3s;
         max-width: 364px;
         margin-right: 58px;
-        /* margin-bottom: 143px; */
     }
 
     .item-img-vertical {
@@ -1285,7 +1284,6 @@ svg.svg_white:hover {
     }
 
     /* portfolio */
-
     .portfolio__text {
         margin: 15px 0 0 1px;
         letter-spacing: 0.2px;
@@ -1303,5 +1301,32 @@ svg.svg_white:hover {
     .portfolio__image {
         width: 216.19px;
         height: 183.76px;
+    }
+
+    /* about-us */
+    .about-us {
+        padding: 55px 0 70px;
+        border: none;
+    }
+
+    .about__text {
+        letter-spacing: unset;
+        margin: 17px 0 36px;
+    }
+
+    .employee {
+        width: calc(33% - 8px);
+    }
+
+    .employee:first-child {
+        margin-left: 2px;
+    }
+
+    .employee__name {
+        margin: 12px 0 0 -1px;
+    }
+
+    .employee__text {
+        margin: 0 0 12px;
     }
 }
