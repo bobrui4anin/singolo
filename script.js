@@ -506,7 +506,7 @@ window.onload = function () {
             }
         });
         window.addEventListener('resize', function (e) {
-            if (document.documentElement.clientWidth <= 768) {
+            if (document.documentElement.clientWidth < 768) {
                 header.removeAttribute('style');
                 logo.style.fontSize = '19.6875px';
                 h1.style.marginTop = '15px';
