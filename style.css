@@ -301,7 +301,7 @@ body {
 
 .item-img-vertical {
     position: relative;
-    margin-left: 36px;
+    margin-left: 35px;
     overflow: hidden;
 
     max-width: 240px;
@@ -605,8 +605,9 @@ img.horizontal-phone {
 
 .portfolio__image {
     margin-bottom: 20px;
-    width: 220px;
-    height: 187px;
+    /* width: 220px; */
+    /* height: 187px; */
+    width: 23.5%;
     transition: all .3s ease-in-out;
     border: 0 solid transparent;
 }
@@ -1204,7 +1205,7 @@ svg.svg_white:hover {
 
 /* media tablet */
 
-@media (max-width: 768px) {
+@media (max-width: 1019px) {
     /* header + slider */
     .navigation__links {
         margin-top: 37px;
@@ -1254,11 +1255,11 @@ svg.svg_white:hover {
     }
 
     .img-phone[data-position="1"] {
-        left: 14.5%;
+        left: 16%;
     }
 
     .img-phone[data-position="3"] {
-        right: 15%;
+        right: 16%;
     }
 
     /* our services */
@@ -1281,9 +1282,14 @@ svg.svg_white:hover {
         margin-top: 0;
         width: calc(49% - 2px);
         margin-bottom: 55px;
+        justify-content: center;
     }
 
     /* portfolio */
+    .portfolio {
+        padding: 63px 0 47px;
+    }
+
     .portfolio__text {
         margin: 15px 0 0 1px;
         letter-spacing: 0.2px;
@@ -1295,12 +1301,11 @@ svg.svg_white:hover {
     }
 
     .portfolio__img {
-        max-height: 795px;
+        max-height: 1200px;
     }
 
     .portfolio__image {
-        width: 216.19px;
-        height: 183.76px;
+        width: 31.36%;
     }
 
     /* about-us */
@@ -1374,5 +1379,21 @@ svg.svg_white:hover {
 
     .contact__links .contact__link:first-child {
         letter-spacing: unset;
+    }
+
+    /* footer */
+    .copyright {
+        font-size: 1.3rem;
+        margin-top: 5px;
+    }
+    
+    .social-links_centered {
+        margin-right: -2px;
+    }
+}
+
+@media (max-width: 800px) {
+    .service {
+        justify-content: unset;
     }
 }
