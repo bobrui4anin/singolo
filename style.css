@@ -1202,9 +1202,10 @@ svg.svg_white:hover {
     }
 }
 
-/* media */
+/* media tablet */
 
 @media (max-width: 768px) {
+    /* header + slider */
     .navigation__links {
         margin-top: 37px;
         width: unset;
@@ -1259,5 +1260,48 @@ svg.svg_white:hover {
 
     .img-phone[data-position="3"] {
         right: 15%;
+    }
+
+    /* our services */
+    .services {
+        height: unset;
+        border: none;
+        padding-bottom: 21px;
+    }
+
+    .services-heading {
+        padding-top: 43px;
+    }
+
+    .services-description {
+        letter-spacing: unset;
+        margin: 17px 0 33px 0;
+    }
+
+    .service {
+        margin-top: 0;
+        width: calc(49% - 2px);
+        margin-bottom: 55px;
+    }
+
+    /* portfolio */
+
+    .portfolio__text {
+        margin: 15px 0 0 1px;
+        letter-spacing: 0.2px;
+        line-height: 30px;
+    }
+    
+    .portfolio__img-category {
+        margin: 14px 0 28px;
+    }
+
+    .portfolio__img {
+        max-height: 795px;
+    }
+
+    .portfolio__image {
+        width: 216.19px;
+        height: 183.76px;
     }
 }
